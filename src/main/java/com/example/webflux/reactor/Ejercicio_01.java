@@ -144,7 +144,66 @@ public class Ejercicio_01 {
 
     }
 
-    // METODOS DE COMBINACION Mono(zip, when)
+    // METODOS DE COMBINACION
+    // Mono(zipWith, mergeWith, when)
+    // Flux(zip, merge, concat)
+
+    /* zipWith: Combina 2 Mono en uno solo, emitiendo un par de valores (Elementos emparejados) */
+    public void monoZipWith() {
+
+        Mono<String> mono1 = Mono.just("mono1");
+        Mono<String> mono2 = Mono.just("mono2");
+
+        Mono<String> mono3 = mono1.zipWith(
+                mono2,
+                (value1, value2)-> value1.concat(" ").concat(value2) // Salida: mono1 mono2 (Elementos emparejados)
+        );
+
+        mono3.subscribe(System.out::println);
+    }
+
+    /* mergeWith: Combina 2 Mono en un Publisher Flux, emite los valores de ambos de forma CONCURRENTE.
+    NOTA: puede variar el orden */
+    public void monoMergeWith() {
+
+        Mono<String> mono1 = Mono.just("mono1");
+        Mono<String> mono2 = Mono.just("mono2");
+
+        Flux<String> mono3 = mono1.mergeWith(mono2);
+
+        mono3.log().subscribe(System.out::println); //Salida: mono1, mono2
+    }
+
+    /* concat: Combina varios Flux de forma SECUENCIAL */
+    public void fluxConcat() {
+        Flux<String> flux1 = Flux.just("A", "B");
+        Flux<String> flux2 = Flux.just("C", "D");
+
+        Flux<String> concatFlux = Flux.concat(flux1,flux2);
+        concatFlux.subscribe(System.out::println); // Salida: A, B, C, D
+    }
+
+    /* merge: Combina varios Flux de forma CONCURRENTE (puede variar el orden) */
+    public void fluxMerge() {
+        Flux<String> flux1 = Flux.just("1", "2");
+        Flux<String> flux2 = Flux.just("A", "B");
+
+        Flux<String> mergeFlux = Flux.merge(flux1,flux2);
+        mergeFlux.log().subscribe(System.out::println); //Salida: 1, 2, A, B
+    }
+
+    /* zip: Combina varios Flux en uno(Elementos emparejados), empareja los elementos de distintos objetos; Integer,String,etc */
+    public void fluxZip() {
+        Flux<Integer> flux1 = Flux.just(1, 2); // Publisher1
+        Flux<String> flux2 = Flux.just("A", "B"); // Publisher2
+
+        Flux<String> zipFlux = Flux.zip(
+                flux1,
+                flux2,
+                (number, letter)-> number + letter);
+
+        zipFlux.subscribe(System.out::println); //salida: 1A, 2B (Elementos emparejados)
+    }
 
     // METODOS DE ERRORES Mono(onErrorResume, onErrorReturn)
 

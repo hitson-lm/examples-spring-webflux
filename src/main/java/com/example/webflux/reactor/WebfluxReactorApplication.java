@@ -37,7 +37,7 @@ public class WebfluxReactorApplication implements CommandLineRunner {
 		//ej1.filter();
 		//ej1.monoEmpty();
 		//ej1.monoError();
-		ej1.fluxFlatMap();
+		ej1.fluxMerge();
 	}
 
 	public void mono() {
