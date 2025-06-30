@@ -1,5 +1,6 @@
-package com.example.webflux.reactor;
+package com.example.webflux.reactor.webflux;
 
+import com.example.webflux.reactor.Person;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

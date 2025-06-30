@@ -6,6 +6,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @ToString
+@Builder
 public class Person {
 
     private String name;
