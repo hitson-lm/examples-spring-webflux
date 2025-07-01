@@ -29,7 +29,7 @@ public class EjemploSingleton {
    * Metodo publico para obtener la instancia de la Clase EjemploSingleton.
    * @return
    */
-  public static EjemploSingleton getInstance() {
+  public synchronized static EjemploSingleton getInstance() {
     //System.out.println("Es null?: " + (instance == null)); // true
     if (instance == null) { // El objeto inicia null
       instance = new EjemploSingleton();  // inicia la instancia con el metodo constructor.
