@@ -1,8 +1,11 @@
 package com.example.webflux.reactor.patrones.factory;
 
+import lombok.ToString;
+
 /**
  * Clase que fabrica y crea Animal.
  */
+@ToString
 public class AnimalFactory {
 
   /**

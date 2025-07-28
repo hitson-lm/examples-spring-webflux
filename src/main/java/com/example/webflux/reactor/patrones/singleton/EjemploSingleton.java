@@ -1,4 +1,4 @@
-package com.example.webflux.reactor.patrones;
+package com.example.webflux.reactor.patrones.singleton;
 
 import com.example.webflux.reactor.Person;
 import lombok.ToString;

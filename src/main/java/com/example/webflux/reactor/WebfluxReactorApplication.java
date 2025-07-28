@@ -1,10 +1,7 @@
 package com.example.webflux.reactor;
 
-import com.example.webflux.reactor.patrones.EjemploSingleton;
-import com.example.webflux.reactor.patrones.ExampleBuilder;
 import com.example.webflux.reactor.patrones.factory.Animal;
 import com.example.webflux.reactor.patrones.factory.AnimalFactory;
-import com.example.webflux.reactor.patrones.factory.Perro;
 import com.example.webflux.reactor.patrones.factory.TipoAnimal;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,27 +11,64 @@ import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @SpringBootApplication
 public class WebfluxReactorApplication implements CommandLineRunner {
 
+	public static int dividir(int a, int b) {
+		if (b == 0) {
+				throw new ArithmeticException("Denominador 'b' no puede ser cero"); //Mensaje de error en consola
+		}
+		return a/b;
+	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(WebfluxReactorApplication.class, args);
+
+		/**
+		 * Exception:(error en compilacion) Exception verificada, el programa o compilador obliga a manejar estas excepcinoes mediante "try-catch"
+		 * o declararlas en la firma del metodo con "throws".
+		 * Representa errores que el programa puede prevenir y manejar, Ejm: problemas de E/S, exceptiones de red.
+		 */
+
+		/**
+		 * RuntimeException:(error en tiempo de ejecución) Exception no verificada, el compilador no obliga a manejarlas ni declararlas en la firma del metodo.
+		 * Lanza excepciones en tiempo de ejecucucion, no se utiliza try-catch
+		 * representa errores que ocurre debido a problemas de logica del programa. ejmplo: NullPointerException, ArrayIndexOutOfBoundsException.
+		 * Generalmente son errores que el programador debe evitar mediante una buena validacion.
+		 */
+		try {
+
+			int resultado = dividir(10,0);
+			System.out.println("Resultado division: " + resultado);
+
+		} catch (Exception e){
+			System.out.println("ERROR: " + e.getMessage()); // Captura la exception y envia el mensaje al usuario final.
+
+		}
+		System.out.println("Finaliza el proceso...");
 
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
 
-		AnimalFactory fabrica = new AnimalFactory();
+		// String pool -> es una espacio caché donde almacena el objeto que se aprovecha para optimizar la memoria.
+		/*String a = "Hola"; //se almacena en String pool, apuntan al mismo region de memoria.
+		String b = "Hola"; //se almacena en String pool, apuntan al mismo region de memoria.*/
 
-		// Indicas a fabrica que cree un animal de tipo PERRO.
-		Animal perro = fabrica.createAnimal(TipoAnimal.PERRO);
-		Animal gato = fabrica.createAnimal(TipoAnimal.GATO);
+		String a = new String("Hola"); //Se crea una direccioin de memoria en regiones diferentes 0xs87
+		String b = new String("Hola"); //se crea una direccioin de memoria en regiones diferentes 0xa51
 
-		System.out.println("Animal perro: "+perro.getSonido());
-		System.out.println("Animal gato: "+gato.getSonido());
+		// Usa el metodo equals() para comparar los valores del contenido de los objetos en memoria.
+		/*if (a.equals(b)) {
+			System.out.println("son iguales a y b");
+		} else {
+			System.out.println("no son iguales a y b");
+		}*/
+
+
+
 
 		/*Flux<String> listName = Flux.just("Luis", "Jesus", "Beto");
 

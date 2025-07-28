@@ -1,4 +1,4 @@
-package com.example.webflux.reactor.patrones;
+package com.example.webflux.reactor.patrones.builder;
 
 public class ExampleBuilder {
   private String name;
