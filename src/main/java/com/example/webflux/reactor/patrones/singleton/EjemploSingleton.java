@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 public class EjemploSingleton {
 
-  private static EjemploSingleton instance; //static(global): permite que la instancia Singleton se compartida por la aplicacion.
+  private static EjemploSingleton instance; //static(global): permite que la instancia Singleton sea compartida por la aplicacion.
   private final String name;
   private final Person person; // final(inmutable): no puede ser modificado despues de ser inicializado.
 

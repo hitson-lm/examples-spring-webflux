@@ -3,6 +3,7 @@ package com.example.webflux.reactor;
 import com.example.webflux.reactor.patrones.factory.Animal;
 import com.example.webflux.reactor.patrones.factory.AnimalFactory;
 import com.example.webflux.reactor.patrones.factory.TipoAnimal;
+import com.example.webflux.reactor.webflux.Ejercicio_01;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -37,7 +38,8 @@ public class WebfluxReactorApplication implements CommandLineRunner {
 		 * representa errores que ocurre debido a problemas de logica del programa. ejmplo: NullPointerException, ArrayIndexOutOfBoundsException.
 		 * Generalmente son errores que el programador debe evitar mediante una buena validacion.
 		 */
-		try {
+
+		/*try {
 
 			int resultado = dividir(10,0);
 			System.out.println("Resultado division: " + resultado);
@@ -46,7 +48,7 @@ public class WebfluxReactorApplication implements CommandLineRunner {
 			System.out.println("ERROR: " + e.getMessage()); // Captura la exception y envia el mensaje al usuario final.
 
 		}
-		System.out.println("Finaliza el proceso...");
+		System.out.println("Finaliza el proceso...");*/
 
 	}
 
@@ -80,7 +82,9 @@ public class WebfluxReactorApplication implements CommandLineRunner {
 		//mono();
 		//flux();
 		//fluxMono();
-		//Ejercicio_01 ej1 = new Ejercicio_01();
+		Ejercicio_01 ej1 = new Ejercicio_01();
+		//ej1.fluxFlatMap();
+		ej1.map();
 		//ej1.mono();
 		//ej1.rangeFlux();
 		//ej1.map();
